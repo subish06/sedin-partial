@@ -1,0 +1,39 @@
+<template>
+    <lightning-card title="Custom Tree Grid">
+        <div class="tree-grid">
+            <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                <thead>
+                    <tr>
+                        <th>Project Name</th>
+                        <th>Client Name</th>
+                        <th>Billing Role</th>
+                        <th>Rate</th>
+                        <th>Hours</th>
+                        <th>Apr</th>
+                        <th>May</th>
+                        <th>Jun</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={gridData} for:item="item">
+                        <tr key={item.id} class={item.class}>
+                            <td onclick={handleToggle} data-id={item.id} data-has-children={item.hasChildren}>
+                                <span class="slds-m-right_x-small">
+                                    <lightning-icon icon-name={item.iconName} size="xx-small"></lightning-icon>
+                                </span>
+                                {item.projectName}
+                            </td>
+                            <td>{item.clientName}</td>
+                            <td>{item.billingRole}</td>
+                            <td>{item.rate}</td>
+                            <td>{item.hours}</td>
+                            <td>{item.apr}</td>
+                            <td>{item.may}</td>
+                            <td>{item.jun}</td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+    </lightning-card>
+</template>
