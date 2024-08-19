@@ -1,5 +1,17 @@
 <template>
-  <lightning-card title="Invoice Data">
+  <lightning-card>
+    <!-- title="Invoice Data" -->
+    <lightning-layout multiple-rows="true">
+        <lightning-layout-item size="6">
+            <h3><b style = "padding-left: 15px;">Invoice Data</b></h3>
+        </lightning-layout-item>
+        <lightning-layout-item size="3">
+      </lightning-layout-item>
+      <lightning-layout-item size="3">
+      <lightning-button style = "padding-right: 15px;padding-left: 10px;" title="Download" class ="slds-float_right" label="Download" onclick={handleDownloadAll}></lightning-button>
+        <lightning-button-icon icon-name="utility:download" class="slds-m-left_small slds-float_right" title="Download" onclick={handleDownload}></lightning-button-icon> 
+    </lightning-layout-item>
+    </lightning-layout>
     <div class="lgc-bg">
       <div class="slds-grid slds-gutters slds-grid_vertical-align-center">
         <lightning-combobox id={financialYear} style="width: 25%" class="slds-m-around_medium slds-col slds-size_1-of-4"
@@ -14,6 +26,8 @@
         </lightning-combobox>
         <lightning-input type="checkbox" label="Enable currency" name="currencyConvert" onchange={handleYearChange}
           value={isCurrencyEnable}></lightning-input>
+          <!-- <lightning-button label="Download" onclick={handleDownloadAll}></lightning-button>
+          <lightning-button-icon icon-name="utility:download" class="slds-m-left_small" title="Download" onclick={handleDownload}></lightning-button-icon> -->
       </div>
       <div class="slds-p-left_small slds-p-right_small custom-tree-grid" style="height: 340px; overflow: auto;">
         <table>

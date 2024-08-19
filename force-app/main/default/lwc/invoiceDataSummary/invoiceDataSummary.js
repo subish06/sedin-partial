@@ -478,4 +478,209 @@ export default class InvoiceDataSummary extends LightningElement {
       }
     });
   }
+
+  handleDownloadAll() {
+    console.log('this.gridData==>',this.gridData)
+    let csvContent = this.convertDataToCSV(this.gridData);
+    let encodedUri = encodeURI(csvContent);
+    let link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", this.financialYear +"_"+ "invoice_data.csv");
+    document.body.appendChild(link);
+
+    link.click(); 
+}
+
+convertDataToCSV(data) {
+    let csvRows = [];
+    // const topHeaders = [
+    //     "",
+    //     "", 
+    //     "", 
+    //     "", 
+    //     "", 
+    //     "", 
+    //     "", "April", "",
+    //     "", "May", "",
+    //     "", "June", "",
+    //     "", "July", "",
+    //     "", "August", "",
+    //     "", "September", "",
+    //     "", "October", "",
+    //     "", "November", "",
+    //     "", "December", "",
+    //     "", "January", "",
+    //     "", "February", "",
+    //     "", "March", "",
+    //     ""
+    // ];
+    // csvRows.push(topHeaders.join(","));
+
+    const headers = [
+        "Project Name",
+        "Client Name",
+        "Business Division",
+        "Contract Number",
+        "Contract End Date",
+        "Billing Role",
+        "April Actual", "April Unbilled", "April Total",
+        "May Actual", "May Unbilled", "May Total",
+        "June Actual", "June Unbilled", "June Total",
+        "July Actual", "July Unbilled", "July Total",
+        "August Actual", "August Unbilled", "August Total",
+        "September Actual", "September Unbilled", "September Total",
+        "October Actual", "October Unbilled", "October Total",
+        "November Actual", "November Unbilled", "November Total",
+        "December Actual", "December Unbilled", "December Total",
+        "January Actual", "January Unbilled", "January Total",
+        "February Actual", "February Unbilled", "February Total",
+        "March Actual", "March Unbilled", "March Total",
+        "Amount"
+    ];
+    csvRows.push(headers.join(","));
+    
+    data.forEach(row => {
+        let values = [
+          row.projectName || '',
+          row.accountName || '',
+          row.businessDivision || '',
+          row.contractNumber || '',
+          row.contractEndDate || '',
+          row.billingRole || '',
+            row.AprActual || 0, row.AprNonBillable || 0, row.AprTotal || 0,
+            row.MayActual || 0, row.MayNonBillable || 0, row.MayTotal || 0,
+            row.JunActual || 0,  row.JunNonBillable || 0, row.JunTotal || 0, 
+            row.JulActual || 0,  row.JulNonBillable || 0, row.JulTotal || 0, 
+            row.AugActual || 0,  row.AugNonBillable || 0, row.AugTotal || 0, 
+            row.SepActual || 0,  row.SepNonBillable || 0, row.SepTotal || 0, 
+            row.OctActual || 0,  row.OctNonBillable || 0, row.OctTotal || 0, 
+            row.NovActual || 0,  row.NovNonBillable || 0, row.NovTotal || 0, 
+            row.DecActual || 0,  row.DecNonBillable || 0, row.DecTotal || 0, 
+            row.JanActual || 0,  row.JanNonBillable || 0, row.JanTotal || 0, 
+            row.FebActual || 0,  row.FebNonBillable || 0, row.FebTotal || 0, 
+            row.MarActual || 0,  row.MarNonBillable || 0, row.MarTotal || 0, 
+            row.Amount || 0
+        ];
+        csvRows.push(values.join(","));
+    });
+    return "data:text/csv;charset=utf-8," + csvRows.join("\n");
+}
+
+  convertToCSV(data) {
+    let csvContent = [];
+// const topHeaders = [
+//     "",
+//     "", 
+//     "", 
+//     "", 
+//     "", 
+//     "", 
+//     "", "April", "",
+//     "", "May", "",
+//     "", "June", "",
+//     "", "July", "",
+//     "", "August", "",
+//     "", "September", "",
+//     "", "October", "",
+//     "", "November", "",
+//     "", "December", "",
+//     "", "January", "",
+//     "", "February", "",
+//     "", "March", "",
+//     ""
+// ];
+// csvContent.push(topHeaders.join(","));
+
+const headers = [
+    "Project Name",
+    "Client Name",
+    "Business Division",
+    "Contract Number",
+    "Contract End Date",
+    "Billing Role",
+    "April Actual", "April Unbilled", "April Total",
+    "May Actual", "May Unbilled", "May Total",
+    "June Actual", "June Unbilled", "June Total",
+    "July Actual", "July Unbilled", "July Total",
+    "August Actual", "August Unbilled", "August Total",
+    "September Actual", "September Unbilled", "September Total",
+    "October Actual", "October Unbilled", "October Total",
+    "November Actual", "November Unbilled", "November Total",
+    "December Actual", "December Unbilled", "December Total",
+    "January Actual", "January Unbilled", "January Total",
+    "February Actual", "February Unbilled", "February Total",
+    "March Actual", "March Unbilled", "March Total",
+    "Amount"
+];
+csvContent.push(headers.join(",") + "\n");
+console.log('csvContent==>',csvContent)
+
+    this.gridData.forEach(parent => {
+        const parentRow = [
+            parent.projectName || '',
+            parent.accountName || '',
+            parent.businessDivision || '',
+            parent.contractNumber || '',
+            parent.contractEndDate || '',
+            parent.billingRole || '',
+            parent.AprActual || 0, parent.AprNonBillable || 0, parent.AprTotal || 0,
+            parent.MayActual || 0, parent.MayNonBillable || 0, parent.MayTotal || 0,
+            parent.JunActual || 0,  parent.JunNonBillable || 0, parent.JunTotal || 0, 
+            parent.JulActual || 0,  parent.JulNonBillable || 0, parent.JulTotal || 0, 
+            parent.AugActual || 0,  parent.AugNonBillable || 0, parent.AugTotal || 0, 
+            parent.SepActual || 0,  parent.SepNonBillable || 0, parent.SepTotal || 0, 
+            parent.OctActual || 0,  parent.OctNonBillable || 0, parent.OctTotal || 0, 
+            parent.NovActual || 0,  parent.NovNonBillable || 0, parent.NovTotal || 0, 
+            parent.DecActual || 0,  parent.DecNonBillable || 0, parent.DecTotal || 0, 
+            parent.JanActual || 0,  parent.JanNonBillable || 0, parent.JanTotal || 0, 
+            parent.FebActual || 0,  parent.FebNonBillable || 0, parent.FebTotal || 0, 
+            parent.MarActual || 0,  parent.MarNonBillable || 0, parent.MarTotal || 0, 
+            parent.Amount || 0
+        ].map(value => `"${value}"`).join(",");
+
+        csvContent += parentRow + "\n";
+        // csvContent += parentRow.join(",") + "\n";
+        console.log('csvContent parent==>',csvContent)
+        parent._children?.forEach(child => {
+            const childRow = [
+                parent.projectName || '',
+                parent.accountName || '',
+                parent.businessDivision || '',
+                parent.contractNumber || '',
+                parent.contractEndDate || '',
+                child.billingRole || '',
+                child.AprActual || 0, child.AprNonBillable || 0, child.AprTotal || 0,
+                child.MayActual || 0, child.MayNonBillable || 0, child.MayTotal || 0,
+                child.JunActual || 0,  child.JunNonBillable || 0, child.JunTotal || 0, 
+                child.JulActual || 0,  child.JulNonBillable || 0, child.JulTotal || 0, 
+                child.AugActual || 0,  child.AugNonBillable || 0, child.AugTotal || 0, 
+                child.SepActual || 0,  child.SepNonBillable || 0, child.SepTotal || 0, 
+                child.OctActual || 0,  child.OctNonBillable || 0, child.OctTotal || 0, 
+                child.NovActual || 0,  child.NovNonBillable || 0, child.NovTotal || 0, 
+                child.DecActual || 0,  child.DecNonBillable || 0, child.DecTotal || 0, 
+                child.JanActual || 0,  child.JanNonBillable || 0, child.JanTotal || 0, 
+                child.FebActual || 0,  child.FebNonBillable || 0, child.FebTotal || 0, 
+                child.MarActual || 0,  child.MarNonBillable || 0, child.MarTotal || 0, 
+                child.Amount || 0
+            ].map(value => `"${value}"`).join(",");
+
+            csvContent += childRow + "\n";
+            // csvContent += childRow.join(",") + "\n";
+        });
+    });
+    console.log('csvContent child===>',csvContent)
+    return csvContent;
+}
+
+handleDownload() {
+    const csvContent = this.convertToCSV(this.gridData);
+
+    const encodedUri = encodeURI('data:text/csv;charset=utf-8,' + csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", this.financialYear +"_"+ "invoice_data.csv");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
 }

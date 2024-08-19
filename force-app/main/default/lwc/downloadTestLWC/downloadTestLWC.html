@@ -1,22 +1,21 @@
 <template>
   <lightning-card title="Invoice Data">
-    <lightning-button style = "padding-right: 10px;padding-top: 30px;" variant="brand" label="Download" onclick={handleDownload} class="slds-m-left_x-small slds-float_right"></lightning-button>
     <div class="lgc-bg">
-      <div class="slds-grid slds-gutters">
-        <lightning-combobox id={financialYear} style="width: 25%" class="slds-m-around_medium slds-col slds-size_1-of-3"
+      <div class="slds-grid slds-gutters slds-grid_vertical-align-center">
+        <lightning-combobox id={financialYear} style="width: 25%" class="slds-m-around_medium slds-col slds-size_1-of-4"
           name="financialYear" label="Financial Year" value={financialYear} options={financialYearOptions}
           onchange={handleYearChange}>
         </lightning-combobox>
-        <lightning-combobox id={businessDivision} style="width: 25%"
-          class="slds-m-around_medium slds-col slds-size_1-of-3" name="businessDivision" label="Business Division"
-          value={businessDivision} options={businessDivisionOptions} onchange={handleYearChange}>
+        <lightning-combobox class="slds-m-around_medium slds-col slds-size_1-of-4" name="businessDivision"
+          label="Business Division" options={businessDivisionOptions} onchange={handleYearChange}>
         </lightning-combobox>
-        <lightning-combobox id={currency} style="width: 25%" class="slds-m-around_medium slds-col slds-size_1-of-3"
-          name="currency" label="Currency" value={currency} options={currencyOptions} onchange={handleYearChange}
-          read-only={isCurrencyDisabled}>
+        <lightning-combobox class="slds-m-around_medium slds-col slds-size_1-of-4" name="currency" label="Currency"
+          options={currencyOptions} onchange={handleYearChange} read-only={isCurrencyDisabled} value={currencyValue}>
         </lightning-combobox>
-        <lightning-input type="checkbox" label="Disable currency convertion" name="currencyConvert"
-          onchange={handleYearChange} value={isCurrencyConvertionEnable}></lightning-input>
+        <lightning-input type="checkbox" label="Enable currency" name="currencyConvert" onchange={handleYearChange}
+          value={isCurrencyEnable}></lightning-input>
+        <lightning-button variant="brand" label="Download" onclick={handleDownload}></lightning-button>
+
       </div>
       <div class="slds-p-left_small slds-p-right_small custom-tree-grid" style="height: 340px; overflow: auto;">
         <table>
