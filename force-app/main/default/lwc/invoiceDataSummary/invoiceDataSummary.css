@@ -1,0 +1,35 @@
+/* table th, table td{
+    padding: 0 10px;
+    border: 1px solid #181818;
+    text-align: center;
+}
+table{
+    background-color: #fff;
+}
+
+body{
+    color: #181818;
+} */
+
+.colspan1 {
+    min-width: 150px;
+    height: 32px;
+    text-align: center;
+    border: 1px solid #aeaeae;
+    border-bottom: 1px solid #f3f3f3;
+    background: #f3f3f3;
+    color: #444444;
+}
+
+.colspan1:first-child {
+    border-left: 1px solid #f3f3f3;
+}
+
+.colspan3 {
+    min-width: 450px;
+    height: 32px;
+    text-align: center;
+    border: 1px solid #aeaeae;
+    background: #f3f3f3;
+    color: #444444;
+}

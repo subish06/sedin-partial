@@ -1,0 +1,51 @@
+<template>
+  <lightning-card title="Invoice Data">
+    <div class="lgc-bg">
+      <div class="slds-grid slds-gutters slds-grid_vertical-align-center">
+        <lightning-combobox id={financialYear} style="width: 25%" class="slds-m-around_medium slds-col slds-size_1-of-4"
+          name="financialYear" label="Financial Year" value={financialYear} options={financialYearOptions}
+          onchange={handleYearChange}>
+        </lightning-combobox>
+        <lightning-combobox class="slds-m-around_medium slds-col slds-size_1-of-4" name="businessDivision"
+          label="Business Division" options={businessDivisionOptions} onchange={handleYearChange}>
+        </lightning-combobox>
+        <lightning-combobox class="slds-m-around_medium slds-col slds-size_1-of-4" name="currency" label="Currency"
+          options={currencyOptions} onchange={handleYearChange} read-only={isCurrencyDisabled} value={currencyValue}>
+        </lightning-combobox>
+        <lightning-input type="checkbox" label="Enable currency" name="currencyConvert" onchange={handleYearChange}
+          value={isCurrencyEnable}></lightning-input>
+      </div>
+      <div class="slds-p-left_small slds-p-right_small custom-tree-grid" style="height: 340px; overflow: auto;">
+        <table>
+          <tbody>
+            <tr>
+              <th style="min-width: 249px !important" class="colspan1">
+                &nbsp;
+              </th>
+              <th class="colspan1">&nbsp;</th>
+              <th class="colspan1">&nbsp;</th>
+              <th class="colspan1">&nbsp;</th>
+              <th class="colspan1">&nbsp;</th>
+              <th class="colspan1">&nbsp;</th>
+              <th class="colspan3">April</th>
+              <th class="colspan3">May</th>
+              <th class="colspan3">June</th>
+              <th class="colspan3">July</th>
+              <th class="colspan3">August</th>
+              <th class="colspan3">September</th>
+              <th class="colspan3">October</th>
+              <th class="colspan3">November</th>
+              <th class="colspan3">December</th>
+              <th class="colspan3">January</th>
+              <th class="colspan3">February</th>
+              <th class="colspan3">March</th>
+              <th class="colspan1">&nbsp;</th>
+            </tr>
+          </tbody>
+        </table>
+        <lightning-tree-grid class="lastRowTotal" columns={gridColumns} key-field="id" data={gridData}
+          min-column-width="150" row-class={rowClass} hide-checkbox-column></lightning-tree-grid>
+      </div>
+    </div>
+  </lightning-card>
+</template>
